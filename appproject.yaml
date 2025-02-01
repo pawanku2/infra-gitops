@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: argoproject
+  namespace: argocd
+spec:
+  description: "Project for managing ArgoCD applications"
+  sourceRepos:
+    - https://github.com/pawanku2/infra-gitops
+  destinations:
+    - namespace: '*'
+      name: in-cluster
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'

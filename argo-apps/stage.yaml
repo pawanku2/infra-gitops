@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-stage
+  namespace: argocd
+spec:
+  project: argoproject
+  source:
+    repoURL: https://github.com/pawanku2/infra-gitops
+    targetRevision: main
+    path: apps/stage/test
+  destination:
+    name: in-cluster
+    namespace: test
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
